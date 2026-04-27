@@ -218,15 +218,13 @@ textarea { resize: vertical; min-height: 50px; }
 }
 
 .inv-issuer {
-    text-align: left;
+    text-align: right;
     font-size: 10pt;
     line-height: 1.7;
 }
 
-.inv-issuer .label { display: inline-block; min-width: 4em; }
 .inv-issuer .issue-date { margin-bottom: 12px; }
-.inv-issuer .issue-date .label { min-width: 4em; }
-.inv-issuer .issue-date .value { margin-left: 4em; }
+.inv-issuer .issue-date .label { margin-right: 2em; }
 
 .inv-total-box {
     margin: 12px 0 8px;
