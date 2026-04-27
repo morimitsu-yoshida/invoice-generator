@@ -145,7 +145,8 @@ function renderPreview() {
     const d = getFormData();
     const subtotal = d.items.reduce((sum, it) => sum + (calcRowAmount(it) || 0), 0);
     const tax = Math.floor(subtotal * (d.taxRate / 100));
-    const total = subtotal + tax + (d.adjustment || 0);
+    const tableTotal = subtotal + tax;
+    const headlineTotal = tableTotal + (d.adjustment || 0);
 
     const itemRowsHTML = d.items.map((it, i) => {
         const amt = calcRowAmount(it);
@@ -195,7 +196,7 @@ function renderPreview() {
 
         <div class="inv-total-box">
             <span class="label">合計金額</span>
-            <span class="value">${fmtYen(total)}</span>
+            <span class="value">${fmtYen(headlineTotal)}</span>
             <span class="tax-incl">（税込）</span>
         </div>
 
@@ -211,7 +212,7 @@ function renderPreview() {
                 ${adjRow}
                 <tr class="summary"><td colspan="4" class="label">小計</td><td class="amount">${fmtYen(subtotal)}</td></tr>
                 <tr class="summary"><td colspan="4" class="label">消費税</td><td class="amount">${fmtYen(tax)}</td></tr>
-                <tr class="summary"><td colspan="4" class="label">合計</td><td class="amount">${fmtYen(total)}</td></tr>
+                <tr class="summary"><td colspan="4" class="label">合計</td><td class="amount">${fmtYen(tableTotal)}</td></tr>
             </tbody>
         </table>
 
