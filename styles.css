@@ -201,9 +201,10 @@ textarea { resize: vertical; min-height: 50px; }
     border-bottom: 1px solid #000;
     padding: 6px 0;
     font-size: 14pt;
+    text-align: center;
 }
 
-.inv-recipient .name { display: inline-block; min-width: 180px; }
+.inv-recipient .name { display: inline-block; }
 .inv-recipient .sama { margin-left: 16px; font-size: 12pt; }
 
 .inv-subject {
