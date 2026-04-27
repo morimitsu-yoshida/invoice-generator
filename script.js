@@ -143,10 +143,9 @@ function calcRowAmount(item) {
 
 function renderPreview() {
     const d = getFormData();
-    const subtotalRaw = d.items.reduce((sum, it) => sum + (calcRowAmount(it) || 0), 0);
-    const subtotal = subtotalRaw + (d.adjustment || 0);
+    const subtotal = d.items.reduce((sum, it) => sum + (calcRowAmount(it) || 0), 0);
     const tax = Math.floor(subtotal * (d.taxRate / 100));
-    const total = subtotal + tax;
+    const total = subtotal + tax + (d.adjustment || 0);
 
     const itemRowsHTML = d.items.map((it, i) => {
         const amt = calcRowAmount(it);
