@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>請求書発行ツール</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="no-print">
+            <h1>請求書発行ツール</h1>
+        </header>
+
+        <div class="main-content">
+            <div class="form-section no-print">
+                <h2>請求書情報入力</h2>
+                <form id="invoiceForm">
+                    <fieldset>
+                        <legend>基本情報</legend>
+                        <div class="form-group">
+                            <label for="issueDate">請求日 <span class="required">*</span></label>
+                            <input type="date" id="issueDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient">宛先 <span class="required">*</span></label>
+                            <input type="text" id="recipient" required placeholder="例: 青原寺">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">件名</label>
+                            <input type="text" id="subject" placeholder="例: 境内維持 田んぼ畔">
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>明細</legend>
+                        <div id="itemsContainer"></div>
+                        <button type="button" id="addItemBtn" class="btn btn-small">＋ 明細追加</button>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>合計調整</legend>
+                        <div class="form-group">
+                            <label for="taxRate">消費税率 (%)</label>
+                            <input type="number" id="taxRate" value="10" min="0" max="100" step="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="adjustment">差額調整 (円)</label>
+                            <input type="number" id="adjustment" value="0" step="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="notes">備考</label>
+                            <textarea id="notes" rows="2"></textarea>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>自社情報</legend>
+                        <div class="form-group">
+                            <label for="issuerName">屋号</label>
+                            <input type="text" id="issuerName" value="MY造園">
+                        </div>
+                        <div class="form-group">
+                            <label for="issuerPerson">担当者</label>
+                            <input type="text" id="issuerPerson" value="吉田 盛隆">
+                        </div>
+                        <div class="form-group">
+                            <label for="issuerZip">郵便番号</label>
+                            <input type="text" id="issuerZip" value="〒399-8301">
+                        </div>
+                        <div class="form-group">
+                            <label for="issuerAddress">住所</label>
+                            <input type="text" id="issuerAddress" value="長野県安曇野市穂高有明3461-2">
+                        </div>
+                        <div class="form-group">
+                            <label for="issuerTel">TEL</label>
+                            <input type="text" id="issuerTel" value="090-2493-7058">
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>振込先</legend>
+                        <div class="form-group">
+                            <label for="bankName">銀行名</label>
+                            <input type="text" id="bankName" value="八十二長野銀行">
+                        </div>
+                        <div class="form-group">
+                            <label for="bankBranch">支店</label>
+                            <input type="text" id="bankBranch" value="穂高支店">
+                        </div>
+                        <div class="form-group">
+                            <label for="bankAccountType">口座種別</label>
+                            <input type="text" id="bankAccountType" value="普通">
+                        </div>
+                        <div class="form-group">
+                            <label for="bankAccountNumber">口座番号</label>
+                            <input type="text" id="bankAccountNumber" value="0661392">
+                        </div>
+                        <div class="form-group">
+                            <label for="bankAccountHolder">口座名義</label>
+                            <input type="text" id="bankAccountHolder" value="ヨシダ モリタカ">
+                        </div>
+                    </fieldset>
+
+                    <div class="button-group">
+                        <button type="button" id="printBtn" class="btn btn-success">印刷 / PDF保存 (Cmd+P)</button>
+                        <button type="button" id="saveBtn" class="btn btn-primary">下書き保存</button>
+                        <button type="button" id="loadBtn" class="btn btn-secondary">下書き呼出</button>
+                        <button type="button" id="clearBtn" class="btn btn-secondary">リセット</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="preview-section">
+                <div id="invoicePreview" class="invoice-paper"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

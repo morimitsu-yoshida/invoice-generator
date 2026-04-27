@@ -1,0 +1,378 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,.2);
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 24px;
+    text-align: center;
+}
+
+header h1 { font-size: 2em; font-weight: 600; }
+
+.main-content {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 24px;
+    padding: 24px;
+}
+
+@media (max-width: 1100px) { .main-content { grid-template-columns: 1fr; } }
+
+.form-section, .preview-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+h2 {
+    color: #667eea;
+    margin-bottom: 16px;
+    font-size: 1.3em;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 8px;
+}
+
+fieldset {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 14px;
+    margin-bottom: 14px;
+    background: white;
+}
+
+legend {
+    padding: 0 8px;
+    font-weight: 600;
+    color: #555;
+    font-size: 14px;
+}
+
+.form-group { margin-bottom: 10px; }
+
+label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+    color: #555;
+    font-size: 13px;
+}
+
+.required { color: #e74c3c; margin-left: 4px; }
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102,126,234,.15);
+}
+
+textarea { resize: vertical; min-height: 50px; }
+
+/* 明細行 */
+.item-row {
+    display: grid;
+    grid-template-columns: 28px 1fr 50px 50px 70px 28px;
+    gap: 4px;
+    margin-bottom: 6px;
+    align-items: center;
+}
+
+.item-row .item-no {
+    text-align: center;
+    font-weight: 600;
+    color: #888;
+    font-size: 13px;
+}
+
+.item-row input { padding: 6px 8px; font-size: 13px; }
+
+.item-row .item-remove {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.item-row .item-remove:hover { background: #c0392b; }
+
+.items-header {
+    display: grid;
+    grid-template-columns: 28px 1fr 50px 50px 70px 28px;
+    gap: 4px;
+    margin-bottom: 6px;
+    font-size: 11px;
+    color: #888;
+    font-weight: 600;
+    text-align: center;
+}
+
+.button-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+
+.btn {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .2s;
+    flex: 1;
+    min-width: 100px;
+}
+
+.btn-small { flex: 0; padding: 6px 12px; font-size: 13px; margin-top: 6px; }
+
+.btn-primary { background: #667eea; color: white; }
+.btn-primary:hover { background: #5568d3; }
+.btn-success { background: #28a745; color: white; }
+.btn-success:hover { background: #218838; }
+.btn-secondary { background: #6c757d; color: white; }
+.btn-secondary:hover { background: #5a6268; }
+
+/* ============== 請求書プレビュー（印刷用紙レイアウト） ============== */
+
+.invoice-paper {
+    background: white;
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 20mm 18mm;
+    box-shadow: 0 4px 20px rgba(0,0,0,.15);
+    font-size: 11pt;
+    line-height: 1.6;
+    color: #000;
+}
+
+.inv-title {
+    text-align: center;
+    font-size: 22pt;
+    font-weight: bold;
+    letter-spacing: 1em;
+    text-indent: 1em;
+    margin-bottom: 24px;
+}
+
+.inv-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 20px;
+}
+
+.inv-recipient {
+    border-bottom: 1px solid #000;
+    padding: 6px 0;
+    font-size: 14pt;
+}
+
+.inv-recipient .name { display: inline-block; min-width: 180px; }
+.inv-recipient .sama { margin-left: 16px; font-size: 12pt; }
+
+.inv-subject {
+    margin-top: 16px;
+    font-weight: bold;
+}
+
+.inv-subject-sub {
+    margin-top: 4px;
+    font-size: 10pt;
+    font-weight: normal;
+}
+
+.inv-issuer {
+    text-align: left;
+    font-size: 10pt;
+    line-height: 1.7;
+}
+
+.inv-issuer .label { display: inline-block; min-width: 4em; }
+.inv-issuer .issue-date { margin-bottom: 12px; }
+.inv-issuer .issue-date .label { min-width: 4em; }
+.inv-issuer .issue-date .value { margin-left: 4em; }
+
+.inv-total-box {
+    margin: 12px 0 8px;
+    padding: 8px 16px;
+    border-bottom: 2px solid #000;
+    font-size: 13pt;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+}
+
+.inv-total-box .label { font-weight: bold; }
+.inv-total-box .value { font-weight: bold; font-size: 16pt; }
+.inv-total-box .tax-incl { font-size: 10pt; color: #555; }
+
+table.inv-items {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+    font-size: 10pt;
+}
+
+table.inv-items th,
+table.inv-items td {
+    border: 1px solid #000;
+    padding: 6px 8px;
+}
+
+table.inv-items thead th {
+    background: #d9e8f3;
+    text-align: center;
+    font-weight: 600;
+}
+
+table.inv-items td.no { text-align: center; width: 8%; }
+table.inv-items td.desc { width: 42%; }
+table.inv-items td.qty { text-align: right; width: 12%; }
+table.inv-items td.unit-price { text-align: right; width: 16%; }
+table.inv-items td.amount { text-align: right; width: 22%; }
+
+table.inv-items tr.summary td {
+    background: #d9e8f3;
+    text-align: right;
+    font-weight: 600;
+}
+
+table.inv-items tr.summary td.label { text-align: center; }
+
+.inv-bottom {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.inv-bank {
+    font-size: 10pt;
+    line-height: 1.8;
+}
+
+.inv-bank .label { font-weight: bold; margin-bottom: 4px; }
+.inv-bank .row { padding-left: 1em; }
+
+.inv-remarks {
+    border: 1px solid #000;
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    min-height: 60px;
+}
+
+.inv-remarks .label {
+    background: #d9e8f3;
+    padding: 8px;
+    text-align: center;
+    border-right: 1px solid #000;
+    font-size: 10pt;
+}
+
+.inv-remarks .body { padding: 8px; font-size: 10pt; white-space: pre-wrap; }
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+    body { padding: 8px; }
+    header { padding: 14px; }
+    header h1 { font-size: 1.3em; }
+    .main-content { padding: 10px; gap: 12px; }
+    .form-section, .preview-section { padding: 12px; }
+    fieldset { padding: 10px; }
+
+    /* 明細行: 縦並びに */
+    .items-header { display: none; }
+    .item-row {
+        display: block;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 28px 8px 8px;
+        margin-bottom: 8px;
+        position: relative;
+        background: #fafafa;
+    }
+    .item-row .item-no {
+        position: absolute;
+        top: 6px; left: 8px;
+        font-size: 12px;
+    }
+    .item-row .item-remove {
+        position: absolute;
+        top: 4px; right: 4px;
+    }
+    .item-row input { margin-bottom: 6px; padding: 8px 10px; font-size: 14px; }
+
+    /* プレビュー: 画面幅に収める */
+    .preview-section { overflow-x: hidden; padding: 8px; }
+    .invoice-paper {
+        width: 100%;
+        min-width: 0;
+        min-height: auto;
+        padding: 14px 12px;
+        font-size: 10pt;
+        box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    }
+    .inv-title { font-size: 16pt; letter-spacing: .4em; margin-bottom: 14px; }
+    .inv-top { grid-template-columns: 1fr; gap: 10px; }
+    .inv-issuer { font-size: 9pt; }
+    .inv-total-box { font-size: 11pt; padding: 6px 10px; }
+    .inv-total-box .value { font-size: 13pt; }
+    table.inv-items { font-size: 8.5pt; }
+    table.inv-items th, table.inv-items td { padding: 4px 6px; }
+    .inv-bank { font-size: 9pt; }
+
+    .button-group .btn { min-width: auto; flex: 1 1 45%; font-size: 13px; padding: 10px 8px; }
+}
+
+/* 印刷時 */
+@media print {
+    @page { size: A4; margin: 0; }
+    body { background: white; padding: 0; }
+    .container { box-shadow: none; border-radius: 0; }
+    .no-print { display: none !important; }
+    .main-content { display: block; padding: 0; }
+    .preview-section { background: none; padding: 0; }
+    .invoice-paper {
+        box-shadow: none;
+        margin: 0;
+        width: 210mm;
+        min-height: 297mm;
+    }
+}
